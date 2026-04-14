@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Healthcare Monitoring Platform</title>
+    <meta name="description" content="AI-Powered Real-Time Smart Hospital Patient Monitoring System">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- ═══ HEADER ═══ -->
+    <header id="main-header">
+        <div class="header-left">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+            </div>
+            <div>
+                <h1 id="header-title">Smart Healthcare Monitor</h1>
+                <span class="header-subtitle" id="header-version">v3.0 — AI-Powered Platform</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="status-pill" id="pill-stream">
+                <span class="pill-dot"></span>
+                <span class="pill-label">Stream</span>
+                <span class="pill-value" id="stream-fps">-- FPS</span>
+            </div>
+            <div class="status-pill" id="pill-vision">
+                <span class="pill-dot"></span>
+                <span class="pill-label">Vision</span>
+                <span class="pill-value" id="vision-mode">DL</span>
+            </div>
+            <div class="status-pill" id="pill-persons">
+                <span class="pill-dot"></span>
+                <span class="pill-label">Persons</span>
+                <span class="pill-value" id="person-count">0</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="header-time" id="header-time"></span>
+        </div>
+    </header>
+
+    <!-- ═══ MAIN GRID ═══ -->
+    <main id="dashboard-grid">
+
+        <!-- ── VIDEO FEED ── -->
+        <section class="card video-card" id="video-section">
+            <div class="card-header">
+                <h2>Live Video Feed</h2>
+                <div class="video-controls">
+                    <!-- Patient -->
+                    <button class="btn btn-sm" id="btn-lock-patient" title="Auto-lock first detected person">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        Lock Patient
+                    </button>
+                    <button class="btn btn-sm btn-danger" id="btn-unlock" title="Unlock patient">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg>
+                        Unlock
+                    </button>
+                    <!-- Bed Zone -->
+                    <button class="btn btn-sm btn-zone" id="btn-draw-zone" title="Click points on the video to draw the bed polygon, then click Save Zone">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>
+                        Set Zone
+                    </button>
+                    <button class="btn btn-sm btn-ghost" id="btn-clear-zone" title="Remove bed zone — user must redraw">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+                        Clear Zone
+                    </button>
+                    <!-- Saline -->
+                    <button class="btn btn-sm btn-saline" id="btn-set-saline" title="Drag a rectangle on the video around the IV bag">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+                        Set Saline
+                    </button>
+                    <button class="btn btn-sm btn-ghost" id="btn-calibrate-saline" title="Lock current IV bag histogram as reference">
+                        📍 Calibrate IV
+                    </button>
+                    <button class="btn btn-sm btn-ghost" id="btn-clear-saline" title="Remove saline ROI — stops saline tracking">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+                        Clear Saline
+                    </button>
+                </div>
+            </div>
+
+            <!-- Draw-mode status banner -->
+            <div id="draw-mode-banner" style="display:none; padding:6px 16px; background:rgba(251,191,36,0.12); border-bottom:1px solid rgba(251,191,36,0.25); font-size:12px; color:#fbbf24; display:none; align-items:center; gap:12px;">
+                <span id="draw-mode-text">● Drawing mode</span>
+                <strong id="draw-mode-hint" style="color:#fff;"></strong>
+                <button class="btn btn-sm btn-ghost" id="btn-cancel-draw" style="margin-left:auto; padding:2px 10px; font-size:11px;">✕ Cancel</button>
+            </div>
+
+            <div class="video-container" id="video-container">
+                <img id="video-feed" src="/video_feed" alt="Live Video Feed">
+                <div class="video-overlay" id="video-overlay">
+                    <canvas id="overlay-canvas"></canvas>
+                </div>
+                <div class="video-badge" id="patient-badge">
+                    <span id="patient-badge-text">No Patient Locked</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PATIENT STATUS ── -->
+        <section class="card" id="patient-section">
+            <div class="card-header">
+                <h2>Patient Status</h2>
+                <span class="card-badge" id="patient-id-badge">--</span>
+            </div>
+            <div class="patient-info">
+                <div class="info-row">
+                    <span class="info-label">Patient ID</span>
+                    <span class="info-value" id="patient-id">Not Locked</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Posture</span>
+                    <span class="info-value" id="patient-posture">--</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Spine Angle</span>
+                    <span class="info-value" id="patient-angle">--°</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Persons in Frame</span>
+                    <span class="info-value" id="patient-persons">0</span>
+                </div>
+            </div>
+            <!-- Risk Gauge -->
+            <div class="risk-gauge-container">
+                <h3>Health Risk Score</h3>
+                <div class="risk-gauge">
+                    <svg viewBox="0 0 200 120" class="gauge-svg">
+                        <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+                        <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGradient)" stroke-width="14" stroke-linecap="round" id="gauge-fill" stroke-dasharray="251" stroke-dashoffset="251"/>
+                        <defs>
+                            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%">
+                                <stop offset="0%" style="stop-color:#22c55e"/>
+                                <stop offset="40%" style="stop-color:#eab308"/>
+                                <stop offset="70%" style="stop-color:#f97316"/>
+                                <stop offset="100%" style="stop-color:#ef4444"/>
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="88" text-anchor="middle" class="gauge-score" id="risk-score-text">0</text>
+                        <text x="100" y="108" text-anchor="middle" class="gauge-label" id="risk-level-text">SAFE</text>
+                    </svg>
+                </div>
+                <div class="risk-components">
+                    <div class="risk-comp"><span class="comp-label">Fall</span><div class="comp-bar"><div class="comp-fill" id="risk-fall" style="width:0%"></div></div></div>
+                    <div class="risk-comp"><span class="comp-label">Inactivity</span><div class="comp-bar"><div class="comp-fill" id="risk-inactivity" style="width:0%"></div></div></div>
+                    <div class="risk-comp"><span class="comp-label">Posture</span><div class="comp-bar"><div class="comp-fill" id="risk-posture" style="width:0%"></div></div></div>
+                    <div class="risk-comp"><span class="comp-label">Zone</span><div class="comp-bar"><div class="comp-fill" id="risk-zone" style="width:0%"></div></div></div>
+                </div>
+                <div class="risk-trend" id="risk-trend">
+                    <span class="trend-arrow" id="trend-arrow">→</span>
+                    <span id="trend-text">STABLE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── MODULE CARDS ── -->
+        <section class="card module-card" id="fall-card">
+            <div class="card-header">
+                <h2>🦴 Fall Detection</h2>
+                <span class="module-status" id="fall-status">NORMAL</span>
+            </div>
+            <div class="module-detail">
+                <div class="confidence-row">
+                    <span>Confidence</span>
+                    <div class="confidence-bar"><div class="confidence-fill" id="fall-confidence"></div></div>
+                    <span class="conf-value" id="fall-conf-value">0%</span>
+                </div>
+                <div class="info-row"><span class="info-label">Spine Angle</span><span class="info-value" id="fall-angle">--°</span></div>
+                <div class="info-row"><span class="info-label">Method</span><span class="info-value small">Spine Vector + Temporal Validation</span></div>
+                <button class="btn btn-sm btn-ghost" id="btn-reset-fall">Reset</button>
+            </div>
+        </section>
+
+        <section class="card module-card" id="movement-card">
+            <div class="card-header">
+                <h2>🏃 Movement Monitor</h2>
+                <span class="module-status" id="movement-status">ACTIVE</span>
+            </div>
+            <div class="module-detail">
+                <div class="confidence-row">
+                    <span>Confidence</span>
+                    <div class="confidence-bar"><div class="confidence-fill" id="movement-confidence"></div></div>
+                    <span class="conf-value" id="movement-conf-value">0%</span>
+                </div>
+                <div class="info-row"><span class="info-label">Still Duration</span><span class="info-value" id="movement-elapsed">0s</span></div>
+                <div class="progress-bar-container"><div class="progress-bar" id="movement-progress"></div></div>
+                <div class="info-row"><span class="info-label">Method</span><span class="info-value small">17-Joint Weighted Displacement</span></div>
+                <button class="btn btn-sm btn-ghost" id="btn-reset-movement">Reset</button>
+            </div>
+        </section>
+
+        <section class="card module-card" id="saline-card">
+            <div class="card-header">
+                <h2>💉 IV Saline Monitor</h2>
+                <span class="module-status" id="saline-status">--</span>
+            </div>
+            <div class="module-detail">
+                <!-- Confidence bar -->
+                <div class="confidence-row">
+                    <span>Confidence</span>
+                    <div class="confidence-bar"><div class="confidence-fill" id="saline-confidence"></div></div>
+                    <span class="conf-value" id="saline-conf-value">0%</span>
+                </div>
+
+                <!-- Main fluid level display -->
+                <div class="saline-main-display">
+                    <!-- Animated bottle gauge -->
+                    <div class="saline-bottle-wrap">
+                        <div class="saline-bottle-outer">
+                            <div class="saline-cap"></div>
+                            <div class="saline-body">
+                                <div class="saline-fluid-animated" id="saline-fluid-animated">
+                                    <div class="saline-wave"></div>
+                                    <div class="saline-wave saline-wave2"></div>
+                                </div>
+                                <div class="saline-level-line" id="saline-level-line"></div>
+                                <div class="saline-pct-inner" id="saline-pct-inner">--%</div>
+                            </div>
+                        </div>
+                        <!-- Critical threshold marker -->
+                        <div class="saline-threshold-mark" id="saline-threshold-mark" style="bottom:20%"
+                             title="Critical threshold (20%)"></div>
+                    </div>
+
+                    <!-- Right-side stats -->
+                    <div class="saline-stats">
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Fluid Level</span>
+                            <span class="stat-val" id="saline-level-big">-- %</span>
+                        </div>
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Tracking ID</span>
+                            <span class="stat-val" id="saline-track-id">--</span>
+                        </div>
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Source</span>
+                            <span class="stat-val small" id="saline-source">Manual ROI</span>
+                        </div>
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Cam Shift</span>
+                            <span class="stat-val" id="saline-cam-shift">--</span>
+                        </div>
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Integrity</span>
+                            <span class="stat-val" id="saline-integrity">--</span>
+                        </div>
+                        <div class="saline-stat-block">
+                            <span class="stat-label">Methods Active</span>
+                            <span class="stat-val" id="saline-n-methods">0 / 4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Method breakdown -->
+                <div class="saline-methods" id="saline-methods-panel">
+                    <div class="method-header">Detection Methods</div>
+                    <div class="method-row">
+                        <span class="method-name">Canny Edge</span>
+                        <div class="method-bar"><div class="method-fill canny-fill" id="mbar-canny"></div></div>
+                        <span class="method-val" id="mval-canny">--</span>
+                    </div>
+                    <div class="method-row">
+                        <span class="method-name">Hough Line</span>
+                        <div class="method-bar"><div class="method-fill hough-fill" id="mbar-hough"></div></div>
+                        <span class="method-val" id="mval-hough">--</span>
+                    </div>
+                    <div class="method-row">
+                        <span class="method-name">Intensity Grad</span>
+                        <div class="method-bar"><div class="method-fill grad-fill" id="mbar-gradient"></div></div>
+                        <span class="method-val" id="mval-gradient">--</span>
+                    </div>
+                    <div class="method-row">
+                        <span class="method-name">GDS (Novel)</span>
+                        <div class="method-bar"><div class="method-fill gds-fill" id="mbar-gds"></div></div>
+                        <span class="method-val" id="mval-gds">--</span>
+                    </div>
+                    <div class="method-spread">
+                        Spread: <span id="saline-spread">--</span>% &nbsp;|&nbsp;
+                        Integrity: <span id="saline-integrity-inline">--</span>
+                    </div>
+                </div>
+
+                <!-- Alert banner -->
+                <div class="saline-alert-banner" id="saline-alert-banner" style="display:none">
+                    <span id="saline-alert-text">⚠ LOW SALINE — Attend Patient</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card module-card" id="zone-card">
+            <div class="card-header">
+                <h2>🛏️ Bed Zone</h2>
+                <span class="module-status" id="zone-status">NO ZONE</span>
+            </div>
+            <div class="module-detail">
+                <div class="confidence-row">
+                    <span>Confidence</span>
+                    <div class="confidence-bar"><div class="confidence-fill" id="zone-confidence"></div></div>
+                    <span class="conf-value" id="zone-conf-value">0%</span>
+                </div>
+                <div class="info-row"><span class="info-label">State</span><span class="info-value" id="zone-state">Draw zone to begin</span></div>
+                <div class="info-row"><span class="info-label">Zone Set</span><span class="info-value" id="zone-defined">No</span></div>
+                <div class="info-row"><span class="info-label">Fell from Bed</span><span class="info-value" id="zone-fell">--</span></div>
+                <div class="info-row"><span class="info-label">Method</span><span class="info-value small">Pose + BBox Corners + Velocity Alert</span></div>
+            </div>
+        </section>
+
+        <!-- ── RISK TREND CHART ── -->
+        <section class="card chart-card" id="chart-section">
+            <div class="card-header">
+                <h2>📈 Risk Score Trend</h2>
+                <div class="chart-controls">
+                    <button class="btn btn-sm btn-ghost active" data-window="60">1m</button>
+                    <button class="btn btn-sm btn-ghost" data-window="300">5m</button>
+                    <button class="btn btn-sm btn-ghost" data-window="3600">1h</button>
+                </div>
+            </div>
+            <div class="chart-container"><canvas id="risk-chart"></canvas></div>
+        </section>
+
+        <!-- ── ALERT FEED ── -->
+        <section class="card alert-card" id="alert-section">
+            <div class="card-header">
+                <h2>🚨 Alert Feed</h2>
+                <span class="alert-count" id="alert-count">0</span>
+            </div>
+            <div class="alert-list" id="alert-list">
+                <div class="alert-empty">No alerts yet</div>
+            </div>
+        </section>
+
+        <!-- ── EVENT LOG ── -->
+        <section class="card log-card" id="log-section">
+            <div class="card-header"><h2>📋 Event Log</h2></div>
+            <div class="log-table-container">
+                <table class="log-table" id="event-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th><th>Event</th><th>Severity</th><th>Confidence</th><th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="event-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══ ALERT TOAST ═══ -->
+    <div id="toast-container"></div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+timestamp,event_type,severity,detail,confidence,risk_score,patient_id
+2026-04-06 01:49:40,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 01:50:41,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.00, zone=FOOT_EDGE, dist=6px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.762,0,1
+2026-04-06 01:52:17,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.34, zone=FOOT_EDGE, dist=35px, posture=STANDING, in_streak=0, out_streak=7, contact=True)",0.711,0,1
+2026-04-06 01:55:49,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #6, vote=0.19, zone=FOOT_EDGE, dist=27px, posture=STANDING, in_streak=0, out_streak=7, contact=True)",0.729,0,6
+2026-04-06 01:56:04,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-06 22:56:38,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 22:57:14,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.27, zone=FOOT_EDGE, dist=-29px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.668,0,1
+2026-04-06 22:59:00,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-06 23:19:21,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 23:22:06,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.19, zone=FOOT_EDGE, dist=-25px, posture=STANDING, in_streak=0, out_streak=7, contact=True)",0.619,0,1
+2026-04-06 23:24:03,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-06 23:34:29,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 23:35:07,PATIENT_FALL,HIGH,"Spine angle 10° (threshold 35.0°), sustained 8 frames, duration 5.5s",0.513,0,1
+2026-04-06 23:37:53,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-06 23:40:24,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 23:41:07,PATIENT_FALL,HIGH,"Spine angle 19° (threshold 35.0°), sustained 8 frames, duration 4.3s",0.588,0,1
+2026-04-06 23:42:16,SALINE_LOW,HIGH,AMF~30% (ROI) Canny=39 Grad=24 GDS=25 spread=14%,0.486,0,
+2026-04-06 23:43:12,PATIENT_FALL,HIGH,"Spine angle 87° (threshold 35.0°), sustained 8 frames, duration 4.5s",0.6,0,1
+2026-04-06 23:44:45,PATIENT_FALL,HIGH,"Spine angle 71° (threshold 35.0°), sustained 8 frames, duration 4.5s",0.6,0,1
+2026-04-06 23:45:09,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #8, vote=0.41, zone=CENTER, dist=62px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.651,0,8
+2026-04-06 23:47:34,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #8, vote=0.00, zone=HEAD, dist=-99px, posture=STANDING, in_streak=0, out_streak=7, contact=True)",0.928,0,8
+2026-04-06 23:48:18,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-06 23:55:38,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-06 23:57:15,PATIENT_FALL,CRITICAL,"Spine angle 9° (threshold 35.0°), sustained 8 frames, duration 4.5s",0.827,0,1
+2026-04-06 23:57:20,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.41, zone=CENTER, dist=46px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.639,0,1
+2026-04-07 00:00:03,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.00, zone=HEAD, dist=-91px, posture=LYING, in_streak=0, out_streak=7, contact=False)",0.894,0,1
+2026-04-07 00:00:11,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,

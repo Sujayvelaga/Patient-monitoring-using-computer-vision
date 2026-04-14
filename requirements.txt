@@ -1,0 +1,29 @@
+# Smart Healthcare Monitoring Platform — Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# Deep Learning
+ultralytics>=8.1.0       # YOLOv8 + YOLOv8-Pose + ByteTrack
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Pose Estimation (fallback)
+mediapipe>=0.10.0
+
+# Web Dashboard
+flask>=3.0.0
+flask-socketio>=5.3.0
+flask-cors>=4.0.0
+eventlet>=0.35.0
+
+# Cloud & Alerts
+firebase-admin>=6.2.0
+twilio>=8.10.0
+
+# Utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
+scipy>=1.11.0

@@ -1,0 +1,43 @@
+timestamp,event_type,severity,detail,confidence,risk_score,patient_id
+2026-04-08 00:01:18,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 00:04:09,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 00:13:38,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 00:14:57,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 00:26:22,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 00:27:28,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 00:40:46,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 00:40:50,SALINE_EMPTY,CRITICAL,Dist: 0.599 | GradDist: 0.486 | Level: 0.0%,1.0,0,1
+2026-04-08 00:40:55,PATIENT_FALL,HIGH,"Spine angle 74° (threshold 35.0°), sustained 8 frames, duration 5.5s",0.45,0,1
+2026-04-08 00:40:56,SALINE_LOW,HIGH,Dist: 0.542 | GradDist: 0.242 | Level: 7.9%,1.0,0,1
+2026-04-08 00:43:33,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 00:47:32,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 00:47:35,SALINE_EMPTY,CRITICAL,Dist: 0.770 | GradDist: 0.398 | Level: 0.0%,1.0,0,1
+2026-04-08 00:47:41,PATIENT_FALL,HIGH,"Spine angle 84° (threshold 35.0°), sustained 8 frames, duration 5.4s",0.45,0,1
+2026-04-08 00:48:34,SALINE_LOW,HIGH,Dist: 0.302 | GradDist: 0.258 | Level: 62.0%,1.0,0,
+2026-04-08 00:49:37,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.00, zone=FOOT_EDGE, dist=-170px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.953,0,1
+2026-04-08 00:49:38,PATIENT_FALL,HIGH,"Spine angle 89° (threshold 35.0°), sustained 8 frames, duration 122.6s",0.45,0,1
+2026-04-08 00:53:28,PATIENT_FALL,HIGH,"Spine angle 89° (threshold 35.0°), sustained 8 frames, duration 352.9s",0.45,0,1
+2026-04-08 00:54:40,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 10:52:23,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 10:52:33,PATIENT_FALL,HIGH,"Spine angle 89° (threshold 35.0°), sustained 8 frames, duration 2.5s",0.45,0,2
+2026-04-08 11:02:37,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 15:25:46,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 15:26:35,PATIENT_FALL,HIGH,"Spine angle 26° (threshold 35.0°), sustained 8 frames, duration 3.4s",0.673,0,1
+2026-04-08 15:30:44,PATIENT_FALL,CRITICAL,"Spine angle 2° (threshold 35.0°), sustained 8 frames, duration 12.5s",0.81,0,11
+2026-04-08 15:33:53,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #22, vote=0.00, zone=HEAD, dist=-141px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.827,0,22
+2026-04-08 15:34:10,PATIENT_FALL,HIGH,"Spine angle 75° (threshold 35.0°), sustained 8 frames, duration 4.0s",0.45,0,22
+2026-04-08 15:35:50,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 15:36:30,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 15:36:38,PATIENT_FALL,HIGH,"Spine angle 89° (threshold 35.0°), sustained 8 frames, duration 4.7s",0.45,0,1
+2026-04-08 15:38:48,NO_MOVEMENT,HIGH,No movement for 31s (threshold: 30s). Score: 1.35,0.975,0,1
+2026-04-08 15:39:08,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 15:40:11,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 15:40:17,PATIENT_FALL,HIGH,"Spine angle 53° (threshold 35.0°), sustained 8 frames, duration 2.3s",0.45,0,1
+2026-04-08 15:42:00,PATIENT_FALL,HIGH,"Spine angle 84° (threshold 35.0°), sustained 8 frames, duration 2.4s",0.45,0,1
+2026-04-08 15:43:45,PATIENT_FALL,HIGH,"Spine angle 68° (threshold 35.0°), sustained 8 frames, duration 2.9s",0.45,0,1
+2026-04-08 15:44:58,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 18:03:22,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 18:03:28,PATIENT_FALL,HIGH,"Spine angle 89° (threshold 35.0°), sustained 8 frames, duration 1.6s",0.3,0,1
+2026-04-08 18:06:12,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-08 18:06:49,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-08 18:06:56,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,

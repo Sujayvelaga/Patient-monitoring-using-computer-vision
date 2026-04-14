@@ -1,0 +1,48 @@
+timestamp,event_type,severity,detail,confidence,risk_score,patient_id
+2026-04-05 00:25:37,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 00:26:21,PATIENT_FALL,HIGH,"Spine angle 34° (threshold 35.0°), sustained 8 frames, duration 7.3s",0.457,0,1
+2026-04-05 00:31:30,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 00:32:07,PATIENT_FALL,HIGH,"Spine angle 11° (threshold 35.0°), sustained 8 frames, duration 1.8s",0.659,0,1
+2026-04-05 00:35:32,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 00:42:35,NO_MOVEMENT,HIGH,No movement for 30s (threshold: 30s). Score: 3.03,0.95,0,17
+2026-04-05 00:44:05,PATIENT_FALL,CRITICAL,"Spine angle 3° (threshold 35.0°), sustained 8 frames, duration 3.9s",0.874,0,29
+2026-04-05 00:46:28,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 16:39:03,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 16:39:39,PATIENT_FALL,HIGH,"Spine angle 9° (threshold 35.0°), sustained 8 frames, duration 13.4s",0.669,0,1
+2026-04-05 16:41:38,PATIENT_FALL,HIGH,"Spine angle 24° (threshold 35.0°), sustained 8 frames, duration 3.4s",0.541,0,1
+2026-04-05 16:44:06,NO_MOVEMENT,HIGH,No movement for 30s (threshold: 30s). Score: 1.51,0.925,0,1
+2026-04-05 16:45:25,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 16:49:03,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 16:51:18,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 17:13:23,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 17:14:22,SALINE_LOW,HIGH,Fluid level: 29% (Classical fallback),0.413,0,1
+2026-04-05 17:14:28,SALINE_EMPTY,CRITICAL,Fluid level: 10% (Classical fallback),0.471,0,1
+2026-04-05 17:14:42,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 17:24:04,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 17:24:08,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 17:24:36,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 17:24:41,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 17:27:09,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 17:27:13,SALINE_EMPTY,CRITICAL,Fluid level: 10% (Classical fallback),0.5,0,1
+2026-04-05 17:27:13,SALINE_LOW,HIGH,Fluid level: 11% (Classical fallback),0.497,0,1
+2026-04-05 17:28:14,SALINE_LOW,HIGH,Fluid level: 15% (Classical fallback),0.459,0,1
+2026-04-05 17:28:14,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, dist=-1px, posture=STANDING)",0.571,0,1
+2026-04-05 17:28:20,SALINE_EMPTY,CRITICAL,Fluid level: 10% (Classical fallback),0.483,0,1
+2026-04-05 17:29:20,SALINE_EMPTY,CRITICAL,Fluid level: 6% (Classical fallback),0.494,0,2
+2026-04-05 17:29:33,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 22:40:58,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 22:41:05,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote_in=0.23, dist=-9px, posture=STANDING, streak_out=7)",0.666,0,1
+2026-04-05 22:41:44,PATIENT_FALL,HIGH,"Spine angle 33° (threshold 35.0°), sustained 8 frames, duration 3.8s",0.466,0,1
+2026-04-05 22:41:52,SALINE_LOW,HIGH,"Fluid ~17% (ROI Canny=15, meniscus=17, hist=0, spread=17%)",0.478,0,1
+2026-04-05 22:42:18,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 22:52:09,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 22:52:13,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 22:53:58,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 22:54:03,SALINE_LOW,HIGH,"MSI ~16% (ROI) Canny=16, meniscus=18, hist=0, spread=18%",0.476,0,1
+2026-04-05 22:54:04,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote_in=0.23, zone=FOOT_EDGE, dist=14px, posture=STANDING, streak_out=7, contact=False)",0.689,0,1
+2026-04-05 22:55:38,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 23:28:07,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 23:28:43,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #2, vote=0.23, zone=FOOT_EDGE, dist=-14px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.685,0,2
+2026-04-05 23:29:00,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-05 23:51:50,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 23:55:51,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,

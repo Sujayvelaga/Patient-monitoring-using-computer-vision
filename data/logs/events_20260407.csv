@@ -1,0 +1,29 @@
+timestamp,event_type,severity,detail,confidence,risk_score,patient_id
+2026-04-07 00:05:21,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 00:05:25,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #2, vote=0.00, zone=HEAD, dist=-86px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.66,0,2
+2026-04-07 00:06:21,PATIENT_FALL,HIGH,"Spine angle 12° (threshold 35.0°), sustained 8 frames, duration 4.4s",0.797,0,1
+2026-04-07 00:07:05,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.00, zone=HEAD, dist=-83px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.869,0,1
+2026-04-07 00:07:33,PATIENT_FALL,CRITICAL,"Spine angle 2° (threshold 35.0°), sustained 8 frames, duration 4.8s",0.882,0,1
+2026-04-07 00:08:06,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.43, zone=HEAD, dist=7px, posture=LYING, in_streak=0, out_streak=8, contact=False)",0.615,0,1
+2026-04-07 00:09:14,PATIENT_FALL,HIGH,"Spine angle 87° (threshold 35.0°), sustained 8 frames, duration 1.8s",0.6,0,1
+2026-04-07 00:09:17,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 00:13:24,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 00:15:33,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.53, zone=CENTER, dist=102px, posture=STANDING, in_streak=0, out_streak=7, contact=False)",0.718,0,1
+2026-04-07 00:16:35,BED_OUT_OF_BED,HIGH,"Patient has left the bed (Patient #1, vote=0.19, zone=HEAD, dist=7px, posture=LYING, in_streak=0, out_streak=7, contact=False)",0.672,0,1
+2026-04-07 00:18:18,PATIENT_FALL,HIGH,"Spine angle 90° (threshold 35.0°), sustained 8 frames, duration 5.2s",0.45,0,1
+2026-04-07 00:18:18,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 19:07:54,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 19:08:06,PATIENT_FALL,HIGH,"Spine angle 63° (threshold 35.0°), sustained 8 frames, duration 2.4s",0.45,0,1
+2026-04-07 19:10:42,PATIENT_FALL,HIGH,"Spine angle 47° (threshold 35.0°), sustained 8 frames, duration 159.0s",0.45,0,1
+2026-04-07 19:16:11,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 19:31:15,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 19:31:28,PATIENT_FALL,HIGH,"Spine angle 10° (threshold 35.0°), sustained 8 frames, duration 5.6s",0.51,0,
+2026-04-07 19:35:45,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 23:41:43,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 23:41:55,PATIENT_FALL,HIGH,"Spine angle 14° (threshold 35.0°), sustained 8 frames, duration 2.5s",0.631,0,1
+2026-04-07 23:50:32,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 23:51:10,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 23:51:15,PATIENT_FALL,HIGH,"Spine angle 28° (threshold 35.0°), sustained 8 frames, duration 1.9s",0.359,0,1
+2026-04-07 23:53:15,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-07 23:58:39,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-07 23:58:43,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,

@@ -1,0 +1,7 @@
+timestamp,event_type,severity,detail,confidence,risk_score,patient_id
+2026-04-04 21:00:30,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-04 21:01:20,PATIENT_FALL,HIGH,"Spine angle 32° (threshold 35.0°), sustained 8 frames, duration 4.3s",0.628,0,1
+2026-04-04 21:02:57,PATIENT_FALL,HIGH,"Spine angle 14° (threshold 35.0°), sustained 8 frames, duration 3.8s",0.78,0,1
+2026-04-04 21:04:04,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
+2026-04-04 23:59:08,SYSTEM_START,INFO,Smart Healthcare Monitor v3.0 started,0.0,0.0,
+2026-04-05 00:03:42,SYSTEM_STOP,INFO,Monitor stopped,0.0,0.0,
